@@ -1,0 +1,31 @@
+{
+  "inputs": [
+    {
+      "id": "console-api-key",
+      "type": "promptString",
+      "description": "Enter your iConsole API Key",
+      "password": true
+    }
+  ],
+  "servers": {
+    "iconsole": {
+      "type": "http",
+      "url": "https://iconsole-mcp.intel.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${input:console-api-key}"
+      }
+    },
+    "dcsopnpwls": {
+      "type": "http",
+      "url": "https://dcsopnpwls.intel.com/mcp",
+      "env": {
+        "NO_PROXY": "*.intel.com,dcsopnpwls.intel.com",
+        "no_proxy": "*.intel.com,dcsopnpwls.intel.com"
+      }
+    },
+    "dcso-metrics": {
+      "type": "streamable-http",
+      "url": "https://dcsometrics2.amr.corp.intel.com/mcp"
+    }
+  }
+}
